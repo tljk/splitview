@@ -1,7 +1,7 @@
 # A tampermonkey script to create a split view, built for surface duo
 
 It allows you to view a page on the right side while keeping the source on the left.  
-It breaks the original behavior of links to make it possiable to navigate.  
+It breaks the original behavior of links to make it possible to navigate.  
 It also uses sandbox to counteract anti-attack behavior of some websites.  
 In all, it is a primitive and rough way that may have many unknown problems.  
 
