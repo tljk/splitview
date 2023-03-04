@@ -7,8 +7,8 @@ In all, it is a primitive and rough way that may have many unknown problems.
 
 
 ## Demo  
-![]()
-![]()
+![](https://github.com/tljk/splitview/blob/master/a.png?raw=true)
+![](https://github.com/tljk/splitview/blob/master/b.png?raw=true)
 
 ## Usage  
 You need a browser that can install tampermonkey. For android, I recommend to use firefox nightly.  
