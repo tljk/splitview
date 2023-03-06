@@ -23,5 +23,5 @@ Page failed to load or navigate with errors like
 * Refused to execute inline script because it violates the following Content Security Policy directive  
 * Refused to display 'https://github.com/' in a frame because it set 'X-Frame-Options' to 'deny'  
   
-Possible workaround, use following extension to disable this <mark>security feature</mark>.  
+Possible workaround, use following extension to disable this ***security*** feature.  
 [Ignore X-Frame headers](https://chrome.google.com/webstore/detail/ignore-x-frame-headers/gleekbfjekiniecknbkamfmkohkpodhe)  
