@@ -1,9 +1,9 @@
 // ==UserScript==
 // @name split view
-// @namespace http://tampermonkey.net/
+// @namespace https://github.com/tljk/splitview/
 // @version 0.1
 // @description originated from v2ex user @v2yllhwa
-// @author You
+// @author tljk
 // @match        https://*/*
 // @match        http://*/*
 // @match        ftp://*/*

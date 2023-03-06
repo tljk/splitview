@@ -1,8 +1,9 @@
-# A tampermonkey script to create a split view, built for surface duo
+# A tampermonkey script to create a split view, built for foldable devices
 
-It allows you to view a page on the right side while keeping the source on the left.  
-It breaks the original behavior of links to make it possible to navigate.  
-It also uses sandbox to counteract anti-attack behavior of some websites.  
+It will split a tab into two sub pages. The newly visited link will open on the right side, keeping the left as its source.  
+  
+It breaks the original behavior of links to make it possible to navigate, which may cause the page to behave abnormally.  
+It uses sandbox to counteract anti-attack behavior of some websites, which may also cause anomalies.  
 In all, it is a primitive and rough way that may have many unknown problems.  
 
 
@@ -11,9 +12,16 @@ In all, it is a primitive and rough way that may have many unknown problems.
 ![](https://github.com/tljk/splitview/blob/master/b.png?raw=true)
 
 ## Usage  
-You need a browser that can install tampermonkey. For android, I recommend to use firefox nightly.  
+A browser that can run tampermonkey. For android, I recommend to use firefox nightly.  
 Then, copy paste from main.js.  
 
 ## Known Issue 
 google.com ❌  
 stackoverflow.com ❓  
+  
+Page failed to load or navigate with errors like
+* Refused to execute inline script because it violates the following Content Security Policy directive  
+* Refused to display 'https://github.com/' in a frame because it set 'X-Frame-Options' to 'deny'  
+  
+Possible workaround, use following extension to disable this <mark>security feature</mark>.  
+[Ignore X-Frame headers](https://chrome.google.com/webstore/detail/ignore-x-frame-headers/gleekbfjekiniecknbkamfmkohkpodhe)  
