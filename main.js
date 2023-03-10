@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name split view
 // @namespace https://github.com/tljk/splitview/
-// @version 0.1
+// @version 0.2
 // @description originated from v2ex user @v2yllhwa
 // @author tljk
 // @match        https://*/*
@@ -15,6 +15,21 @@
 (function () {
     "use strict";
     let url = window.location.href;
+    function modlink(){
+        let nodes = document.querySelectorAll("a");
+        for (let i = 0; i < nodes.length; i++) {
+            // console.log(nodes[i].href);
+            nodes[i].addEventListener("click", function (e) {
+                e.preventDefault();
+                e.stopPropagation();
+                window.parent.iframe_open_url(url, nodes[i].href);
+            });
+        }
+    }
+
+    const observer = new MutationObserver(modlink);
+    observer.observe(document.body, {childList: true, attributes: true, subtree: true});
+
     if (window.self === window.top) {
         document.write(
 `
@@ -46,16 +61,8 @@ history.replaceState({},"",lefturl);
 </html>
 `
             );
-        } else {
-            document.body.style.minWidth = "unset";
-            let nodes = document.querySelectorAll("a");
-            for (let i = 0; i < nodes.length; i++) {
-                // console.log(nodes[i].href);
-                nodes[i].addEventListener("click", function (e) {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    window.parent.iframe_open_url(url, nodes[i].href);
-                });
-            }
-        }
+    } else {
+        document.body.style.minWidth = "unset";
+        modlink();
+    }
 })();
