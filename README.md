@@ -1,10 +1,10 @@
 # A tampermonkey script to create a split view, built for foldable devices
 
-It will split a tab into two sub pages. The newly visited link will open on the right side, keeping the left as its source.  
+It will split a tab into two sub pages. Long press any link on the left to open it on the right side.  
   
-It breaks the original behavior of links to make it possible to navigate, which may cause the page to behave abnormally.  
-It uses sandbox to counteract anti-attack behavior of some websites, which may also cause anomalies.  
-In all, it is a primitive and rough way that may have many unknown problems.  
+~~It breaks the original behavior of links to make it possible to navigate, which may cause the page to behave abnormally.  ~~
+~~It uses sandbox to counteract anti-attack behavior of some websites, which may also cause anomalies.  ~~
+~~In all, it is a primitive and rough way that may have many unknown problems.  ~~
 
 
 ## Demo  
@@ -13,10 +13,9 @@ In all, it is a primitive and rough way that may have many unknown problems.
 
 ## Usage  
 A browser that can run tampermonkey. For android, I recommend to use firefox nightly.  
-Then, copy paste from main.js.  
 
 ## Known Issue 
-google.com ❌  
+google.com ✔️  
 stackoverflow.com ❓  
   
 Page failed to load or navigate with errors like

@@ -1,68 +1,55 @@
 // ==UserScript==
-// @name split view
+// @name         split view new
 // @namespace https://github.com/tljk/splitview/
-// @version 0.2
-// @description originated from v2ex user @v2yllhwa
-// @author tljk
+// @version      0.3
+// @description  long press link to open in side panel, 长按链接在侧边栏打开
+// @author       tljk
 // @match        https://*/*
 // @match        http://*/*
 // @match        ftp://*/*
-// @grant none
-// @run-at document-end
+// @require      https://raw.githubusercontent.com/john-doherty/long-press-event/master/dist/long-press-event.min.js
+// @grant        none
+// @run-at       document-end
 // @license MIT
 // ==/UserScript==
 
-(function () {
-    "use strict";
-    let url = window.location.href;
-    function modlink(){
-        let nodes = document.querySelectorAll("a");
-        for (let i = 0; i < nodes.length; i++) {
-            // console.log(nodes[i].href);
-            nodes[i].addEventListener("click", function (e) {
-                e.preventDefault();
-                e.stopPropagation();
-                window.parent.iframe_open_url(url, nodes[i].href);
+(function() {
+    'use strict';
+    if (window.screen.width >= 600){
+        function modlink(){
+            document.querySelectorAll('a').forEach(function(r_node) {
+                r_node.addEventListener("long-press", function (e) {
+                    if(r_node.href.split('?')[0]=='https://www.google.com/url'){
+                        const urlParams = new URLSearchParams((new URL(r_node.href)).search);
+                        if(urlParams.get('url')){
+                            iframeobj.src = urlParams.get('url');
+                        }else{
+                            iframeobj.src = urlParams.get('q');
+                        }
+                    }else{
+                        iframeobj.src = r_node.href;
+                    }
+                });
             });
         }
+        const observer = new MutationObserver(modlink);
+        observer.observe(document.body, {childList: true, attributes: true, subtree: true});
+
+        // Your code here...
+        if (window.self === window.top) {
+            var iframeobj = document.createElement('iframe');
+            iframeobj.name = 'iframe_splitview';
+            iframeobj.src = ''
+            iframeobj.style = 'top:0;left:51%;width:49%;height:100%;border:0;position:fixed';
+            iframeobj.sandbox = "allow-downloads allow-downloads-without-user-activation allow-presentation allow-modals allow-same-origin allow-scripts allow-popups allow-forms allow-pointer-lock allow-top-navigation-by-user-activation"
+            document.body.style.width = '49%';
+            document.body.style.marginRight = '51%';
+            document.body.setAttribute("data-long-press-delay", "300");
+            document.body.appendChild(iframeobj);
+
+            modlink();
+        }
     }
-
-    const observer = new MutationObserver(modlink);
-    observer.observe(document.body, {childList: true, attributes: true, subtree: true});
-
-    if (window.self === window.top) {
-        document.write(
-`
-<html>
-<head>
-</head>
-
-<body style="margin:0;padding:0;background:gray;" scroll="no">
-<iframe src='${url}' id='leftpage' style='width:49%;height:100%;float:left' frameborder='0' allowfullscreen='true' sandbox="allow-downloads allow-downloads-without-user-activation allow-presentation allow-modals allow-same-origin allow-scripts allow-popups allow-forms allow-pointer-lock allow-top-navigation-by-user-activation"></iframe>
-<iframe src='' id='rightpage' style='width:49%;height:100%;float:right' frameborder='0' allowfullscreen='true' sandbox="allow-downloads allow-downloads-without-user-activation allow-presentation allow-modals allow-same-origin allow-scripts allow-popups allow-forms allow-pointer-lock allow-top-navigation-by-user-activation"></iframe>
-</body>
-
-<script>
-var lefturl = '${url}';
-var righturl;
-var iframe_open_url = function (left, right) {
-if(righturl != right){
-righturl = right;
-document.getElementById('rightpage').src = righturl;
 }
-if(lefturl != left){
-lefturl = left;
-document.getElementById('leftpage').src = lefturl;
-}
-history.replaceState({},"",righturl);
-history.replaceState({},"",lefturl);
-}
-</script>
-</html>
-`
-            );
-    } else {
-        document.body.style.minWidth = "unset";
-        modlink();
-    }
-})();
+
+)();
