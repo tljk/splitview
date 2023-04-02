@@ -7,7 +7,6 @@
 // @match        https://*/*
 // @match        http://*/*
 // @match        ftp://*/*
-// @require      https://raw.githubusercontent.com/john-doherty/long-press-event/master/dist/long-press-event.min.js
 // @grant        none
 // @run-at       document-end
 // @license MIT
